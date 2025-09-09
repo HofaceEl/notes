@@ -2,31 +2,50 @@
 layout: default
 ---
 
-<!--Language switch-->
+{%- comment -%}
+  notecover.html
+  - remove any existing lang prefix ( /zh/ /en/ ... ) from page.url
+  - strip index.html
+  - build target URLs safely:
+      default lang ->  {{ site.baseurl }} + clean_url
+      other lang   ->  {{ site.baseurl }}/<lang> + clean_url
+  - collapse double slashes
+{%- endcomment -%}
 
-{%- assign clean_url = page.url | replace:'index.html', '/' | replace:'index.html', '' -%}
+{%- assign clean_url = page.url | replace: '/index.html', '/' | replace: 'index.html', '' -%}
+
+{%- for l in site.languages -%}
+  {%- assign lang_prefix = '/' | append: l | append: '/' -%}
+  {%- assign clean_url = clean_url | replace: lang_prefix, '/' -%}
+{%- endfor -%}
+
+{%- assign clean_url = clean_url | replace: '//' , '/' -%}
 {%- if clean_url == '' -%}
   {%- assign clean_url = '/' -%}
 {%- endif -%}
 
+<!-- Language switch -->
 <div class="lang-div d-flex flex-column" style="margin-bottom: 1rem;">
-  {% for lang in site.languages %}
+  {%- for lang in site.languages -%}
+    {%- if lang == site.default_lang -%}
+      {%- assign target = site.baseurl | append: clean_url -%}
+    {%- else -%}
+      {%- assign target = site.baseurl | append: '/' | append: lang | append: clean_url -%}
+    {%- endif -%}
+
+    {%- assign target = target | replace: '//' , '/' -%}
+
     <p class="lang-name-box">
       <a class="lang-name"
-         {% if lang == site.active_lang %}style="font-weight: bold;"{% endif %}
-         href="{% if lang == site.default_lang %}
-                 {{ site.baseurl }}{{ page.url }}
-               {% else %}
-                 {{ site.baseurl }}/{{ lang }}{{ page.url }}
-               {% endif %}">
-        {{ site.data.locales[lang].tabs.lang_name }}
+         href="{{ target }}"
+         {%- if lang == site.active_lang -%} style="font-weight: bold;" {%- endif -%}>
         {{ lang | upcase }}
       </a>
     </p>
-  {% endfor %}
+  {%- endfor -%}
 </div>
 
-<!-- Page content -->
+<!-- Page header (show title/date) -->
 <div class="page-content">
   <div class="wrapper">
     <header class="post-header">
