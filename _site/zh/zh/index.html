@@ -38,17 +38,27 @@
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <!-- Language switch -->
-<div class="lang-div d-flex flex-column" style="margin-bottom: 1rem;"><p class="lang-name-box">
-      <a class="lang-name"
-         href="/notes/zh/">
+<div class="lang-switcher">
+  <select id="lang-dropdown" onchange="location = this.value;">
+    
+      
+      
+
+      <option value="/notes/"
+        >
         EN
-      </a>
-    </p><p class="lang-name-box">
-      <a class="lang-name"
-         href="/notes/zh/"style="font-weight: bold;">
+      </option>
+    
+      
+      
+
+      <option value="/notes/zh/"
+        selected>
         ZH
-      </a>
-    </p></div>
+      </option>
+    
+  </select>
+</div>
 
 <!-- Page header (show title/date) -->
 <div class="page-content">

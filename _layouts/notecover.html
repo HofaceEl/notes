@@ -26,24 +26,22 @@ layout: default
 {%- endif -%}
 
 <!-- Language switch -->
-<div class="lang-div d-flex flex-column" style="margin-bottom: 1rem;">
-  {%- for lang in site.languages -%}
-    {%- if lang == site.default_lang -%}
-      {%- assign target = site.baseurl | append: clean_url -%}
-    {%- else -%}
-      {%- assign target = site.baseurl | append: '/' | append: lang | append: clean_url -%}
-    {%- endif -%}
+<div class="lang-switcher">
+  <select id="lang-dropdown" onchange="location = this.value;">
+    {% for lang in site.languages %}
+      {% if lang == site.default_lang %}
+        {% assign target = site.baseurl | append: clean_url %}
+      {% else %}
+        {% assign target = site.baseurl | append: '/' | append: lang | append: clean_url %}
+      {% endif %}
+      {% assign target = target | replace: '//' , '/' %}
 
-    {%- assign target = target | replace: '//' , '/' -%}
-
-    <p class="lang-name-box">
-      <a class="lang-name"
-         href="{{ target }}"
-         {%- if lang == site.active_lang -%} style="font-weight: bold;" {%- endif -%}>
+      <option value="{{ target }}"
+        {% if lang == site.active_lang %}selected{% endif %}>
         {{ lang | upcase }}
-      </a>
-    </p>
-  {%- endfor -%}
+      </option>
+    {% endfor %}
+  </select>
 </div>
 
 <!-- Page header (show title/date) -->

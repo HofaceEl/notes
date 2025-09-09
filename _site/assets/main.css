@@ -1,35 +1,4 @@
 /**
- * Language switcher styles
- */
-.lang-switcher {
-  text-align: right;
-  margin-bottom: 1rem;
-}
-.lang-switcher select {
-  font-size: 14px;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff;
-  cursor: pointer;
-
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><polygon points='0,0 12,0 6,8' style='fill:%23666;'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 0.6rem center;
-  background-size: 12px 8px;
-  padding-right: 1.8rem; /* 给箭头留空间 */
-}
-.lang-switcher select:focus {
-  outline: none;
-  border-color: #007acc;
-  box-shadow: 0 0 3px rgba(0, 122, 204, 0.5);
-}
-
-/**
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
