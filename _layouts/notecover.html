@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<!--Language switch-->
+
+<div class="lang-div d-flex flex-column" style="margin-bottom: 1rem;">
+  {% for lang in site.languages %}
+    <p class="lang-name-box">
+        <a class="lang-name"
+        {% if lang == site.active_lang %}
+          style="font-weight: bold;" {% endif %}
+          {% static_href %}
+          href="{% if lang == site.default_lang %}
+            {{ site.baseurl }}{{ page.url }}
+            {% else %}
+                {{ site.baseurl }}/{{ lang }}{{ page.url }}
+            {% endif %}"
+            {% end static_href %}>
+            {{ site.data.locales[lang].tabs.lang_name }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
+
+<!--Content begins-->
+<div class="page-content">
+    <div class="wrapper">
+        {{ content }}
+    </div>
+</div>
