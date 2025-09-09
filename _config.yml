@@ -45,6 +45,8 @@ lang_from_path: true
 sass:
   sourcemap: never
 
+permalink: pretty
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

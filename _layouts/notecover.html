@@ -37,7 +37,7 @@ layout: default
       {% assign target = target | replace: '//' , '/' %}
 
       <option value="{{ target }}"
-        {% if lang == site.active_lang %}selected{% endif %}>
+        {% if lang == page.lang %}selected{% endif %}>
         {{ lang | upcase }}
       </option>
     {% endfor %}
