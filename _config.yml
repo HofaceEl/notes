@@ -35,7 +35,7 @@ plugins:
   - jekyll-polyglot
 
 # Polyglot Settings
-languages: ["en", "zh"]
+languages: ["en", "zh", "ja"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public", "assets", "sitemap.xml"]
 parallel_localization: false
