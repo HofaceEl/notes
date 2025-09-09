@@ -10,22 +10,19 @@ layout: default
 {%- endif -%}
 
 <div class="lang-div d-flex flex-column" style="margin-bottom: 1rem;">
-  {%- for lang in site.languages -%}
-    {%- if lang == site.default_lang -%}
-      {%- assign target = site.baseurl | append: clean_url -%}
-    {%- else -%}
-      {%- assign target = site.baseurl | append: '/' | append: lang | append: clean_url -%}
-    {%- endif -%}
-    {%- assign target = target | replace: '//','/' -%}
-
+  {% for lang in site.languages %}
     <p class="lang-name-box">
       <a class="lang-name"
-         {%- if lang == site.active_lang -%} style="font-weight: bold;" {%- endif -%}
-         {% static_href %}href="{{ target }}"{% endstatic_href %}>
-         {{ site.data.locales[lang].tabs.lang_name }}
+         {% if lang == site.active_lang %}style="font-weight: bold;"{% endif %}
+         href="{% if lang == site.default_lang %}
+                 {{ site.baseurl }}{{ page.url }}
+               {% else %}
+                 {{ site.baseurl }}/{{ lang }}{{ page.url }}
+               {% endif %}">
+        {{ site.data.locales[lang].tabs.lang_name }}
       </a>
     </p>
-  {%- endfor -%}
+  {% endfor %}
 </div>
 
 <!-- Page content -->
